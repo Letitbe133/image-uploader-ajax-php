@@ -9,8 +9,8 @@ class Image {
     public $img_type;
     public $img_path;
 
-    public function __construct($db) {
-        $this->conn = $db;
+    public function __construct($conn) {
+        $this->conn = $conn;
     }
 
     public function get_images() {
@@ -37,7 +37,7 @@ class Image {
         // initialize empty var to store values to be inserted in DB
         $params = [];
         
-        // llop through data array
+        // loop through data array
         foreach ($data as $value) {
             $this->img_name = $value['name'];
             $this->img_save_name = $value['save_name'];
@@ -70,12 +70,14 @@ class Image {
         }
 
         if ($stmt->rowCount() > 0) {
+            $stmt = null;
+            $this->conn = null;
             return true;
         } else {
+            $stmt = null;
+            $this->conn = null;
             return false;
         }
 
-        $stmt = null;
-        $this->conn = null;
     }
 }

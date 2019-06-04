@@ -1,6 +1,6 @@
 <?php
-ini_set('errors_display', 1);
-error_reporting(E_ALL);
+// ini_set('errors_display', 1);
+// error_reporting(E_ALL);
 
 // import Database object
 require_once '../config/Database.php';
@@ -87,7 +87,6 @@ if (isset($_FILES) && !empty($_FILES['image'])) {
         echo json_encode([
             "success" => false,
             "message" => "Image(s) could not be inserted in database",
-            "FILES" => $_FILES
         ]);
     }
 } else {
